@@ -13,7 +13,7 @@ def load_lottie(filepath):
 lottie_cat = load_lottie("cat.json")
 
 # Căn lệch nhẹ mèo sang phải bằng cách dùng columns
-left, center, right = st.columns([1, 2, 1.5])  # Chỉnh tỉ lệ lệch phải tại đây
+left, center, right = st.columns([1, 2, 1])  # Chỉnh tỉ lệ lệch phải tại đây
 with right:
     st_lottie(lottie_cat, height=300, width=300, speed=1, loop=True, quality="high")
 
