@@ -1,16 +1,19 @@
 FROM python:3.10-slim
 
-# Set working directory
+# Cài đặt thư mục làm việc
 WORKDIR /app
 
-# Copy files
+# Copy toàn bộ project vào container
 COPY . .
 
-# Install dependencies
+# Cài đặt các package
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the default Cloud Run port
+# Expose đúng cổng Cloud Run yêu cầu
 EXPOSE 8080
 
-# Run Streamlit on the Cloud Run-assigned port
-CMD ["streamlit", "run", "app.py", "--server.port=$PORT", "--server.address=0.0.0.0"]
+# Thiết lập biến PORT mặc định để tránh lỗi
+ENV PORT 8080
+
+# Dùng shell để giải biến PORT
+CMD streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
